@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TV Sem Limites | Plataforma de Entretenimento</title>
+  <meta name="description" content="Plataforma de entretenimento com acesso prático, visual moderno e suporte rápido." />
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+    html{scroll-behavior:smooth}
+    body{background:#0a0a0a;color:#fff;overflow-x:hidden}
+    a{text-decoration:none}
+
+    header{
+      position:fixed;top:0;left:0;width:100%;z-index:999;
+      background:linear-gradient(to bottom, rgba(0,0,0,.9), rgba(0,0,0,.35));
+      padding:18px 28px;display:flex;justify-content:space-between;align-items:center;
+      backdrop-filter:blur(8px)
+    }
+    .logo{font-size:2rem;font-weight:900;color:#e50914;letter-spacing:1px}
+    nav a{color:#fff;margin-left:18px;font-size:.95rem;opacity:.9}
+    nav a:hover{opacity:1;color:#e50914}
+
+    .hero{
+      min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;
+      padding:120px 20px 60px;
+      background:
+      linear-gradient(to top, rgba(10,10,10,1) 5%, rgba(10,10,10,.65) 45%, rgba(10,10,10,.8) 100%),
+      url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1800&q=80') center/cover no-repeat;
+    }
+    .hero-content{max-width:920px}
+    .hero-badge{
+      display:inline-block;background:rgba(229,9,20,.15);border:1px solid rgba(229,9,20,.45);
+      color:#fff;padding:8px 16px;border-radius:999px;font-size:.9rem;margin-bottom:18px
+    }
+    .hero h1{font-size:4rem;line-height:1.05;font-weight:900;margin-bottom:18px}
+    .hero p{font-size:1.2rem;color:#d1d5db;max-width:760px;margin:0 auto 28px;line-height:1.6}
+    .cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+    .btn{
+      display:inline-block;padding:15px 28px;border-radius:12px;font-weight:800;font-size:1rem;
+      transition:.2s ease;box-shadow:0 10px 25px rgba(0,0,0,.25)
+    }
+    .btn-primary{background:#e50914;color:#fff}
+    .btn-secondary{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.18)}
+    .btn:hover{transform:translateY(-2px) scale(1.02)}
+
+    .section{max-width:1240px;margin:auto;padding:70px 20px}
+    .section-title{font-size:2.2rem;font-weight:900;margin-bottom:14px}
+    .section-sub{color:#b3b3b3;max-width:760px;line-height:1.7;margin-bottom:28px}
+
+    .highlight-strip{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:-40px;position:relative;z-index:3
+    }
+    .highlight{
+      background:linear-gradient(180deg,#171717,#101010);border:1px solid rgba(255,255,255,.06);
+      border-radius:20px;padding:24px;box-shadow:0 12px 28px rgba(0,0,0,.35)
+    }
+    .highlight h3{font-size:1.15rem;margin-bottom:10px}
+    .highlight p{color:#b3b3b3;line-height:1.6;font-size:.95rem}
+
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px}
+    .card{
+      background:linear-gradient(180deg,#171717,#111);border-radius:22px;padding:30px;
+      border:1px solid rgba(255,255,255,.06);box-shadow:0 12px 28px rgba(0,0,0,.35);
+      transition:.25s ease;position:relative;overflow:hidden
+    }
+    .card::before{
+      content:'';position:absolute;top:0;left:0;width:100%;height:4px;
+      background:linear-gradient(90deg,#e50914,#ff5f57,#e50914)
+    }
+    .card:hover{transform:translateY(-8px)}
+    .card.popular{border:1px solid rgba(229,9,20,.45);box-shadow:0 14px 30px rgba(229,9,20,.12)}
+    .tag{
+      display:inline-block;background:#e50914;color:#fff;padding:6px 12px;border-radius:999px;
+      font-size:.78rem;font-weight:700;margin-bottom:14px
+    }
+    .card h3{font-size:1.7rem;margin-bottom:10px}
+    .price{font-size:2.4rem;color:#fff;font-weight:900;margin:18px 0}
+    .price span{font-size:1rem;color:#9ca3af;font-weight:400}
+    .small{color:#b3b3b3;line-height:1.7;font-size:.95rem;margin-bottom:18px}
+    .features{list-style:none;margin:18px 0 10px}
+    .features li{margin-bottom:10px;color:#ddd}
+
+    .apps-grid,.steps-grid,.reviews-grid,.device-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+    .app-card,.step-card,.review-card,.device-card,.faq-item,.pix-box{
+      background:#141414;border-radius:20px;padding:24px;border:1px solid rgba(255,255,255,.06)
+    }
+    .app-card h3,.step-card h3,.device-card h3{margin-bottom:12px;font-size:1.25rem}
+    .app-card p,.step-card p,.device-card p,.review-card p,.faq-item p{color:#b3b3b3;line-height:1.7}
+
+    .showcase{
+      background:linear-gradient(180deg,#0f0f0f,#0b0b0b);
+      border:1px solid rgba(255,255,255,.05);border-radius:26px;padding:34px;margin-top:20px
+    }
+
+    .payment-wrap{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
+    .qr-image{
+      width:100%;max-width:320px;background:#fff;padding:14px;border-radius:22px;display:block;margin:auto;
+      box-shadow:0 14px 30px rgba(0,0,0,.35)
+    }
+    .pix-copy{
+      margin-top:16px;background:#0e0e0e;border:1px dashed rgba(255,255,255,.18);padding:14px;border-radius:14px;
+      color:#d1d5db;font-size:.95rem;word-break:break-word
+    }
+
+    .support-box{
+      background:linear-gradient(135deg,#141414,#0f0f0f);border:1px solid rgba(255,255,255,.06);
+      border-radius:26px;padding:34px;text-align:center
+    }
+    .support-box h2{font-size:2rem;margin-bottom:12px}
+    .support-box p{color:#b3b3b3;margin-bottom:22px;line-height:1.7}
+
+    .faq-item{margin-bottom:16px}
+    .faq-item h3{margin-bottom:10px;font-size:1.05rem}
+
+    footer{text-align:center;padding:35px 20px;color:#888;font-size:.95rem}
+    .whatsapp-fixed{
+      position:fixed;bottom:18px;right:18px;background:#25D366;color:#fff;padding:15px 20px;
+      border-radius:999px;font-weight:800;box-shadow:0 12px 24px rgba(0,0,0,.35);z-index:999
+    }
+
+    @media (max-width:900px){
+      .hero h1{font-size:2.8rem}
+      .payment-wrap{grid-template-columns:1fr}
+    }
+    @media (max-width:768px){
+      header{flex-direction:column;gap:12px;padding:16px 18px}
+      nav{display:flex;flex-wrap:wrap;justify-content:center}
+      nav a{margin:6px 10px}
+      .hero h1{font-size:2.2rem}
+      .hero p{font-size:1rem}
+      .section{padding:56px 18px}
+      .section-title{font-size:1.8rem}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">TV SEM LIMITES</div>
+    <nav>
+      <a href="#planos">Planos</a>
+      <a href="#apps">Aplicativos</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#pagamento">Pagamento</a>
+      <a href="#suporte">Suporte</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">Plataforma de entretenimento</div>
+      <h1>Entretenimento completo em um só lugar</h1>
+      <p>Tenha acesso prático a uma plataforma com programação, filmes e séries em uma experiência moderna, compatível com vários dispositivos.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://wa.me/5511935028713" target="_blank">ASSINAR AGORA</a>
+        <a class="btn btn-secondary" href="#planos">VER PLANOS</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="highlight-strip">
+      <div class="highlight">
+        <h3>📱 Compatível com vários aparelhos</h3>
+        <p>Use no celular, TV Box, Smart TV Samsung e Roku com instalação simples.</p>
+      </div>
+      <div class="highlight">
+        <h3>⚡ Acesso rápido</h3>
+        <p>Ativação prática e suporte rápido para ajudar quando precisar.</p>
+      </div>
+      <div class="highlight">
+        <h3>💬 Atendimento no WhatsApp</h3>
+        <p>Fale direto no suporte para tirar dúvidas e enviar comprovante.</p>
+      </div>
+      <div class="highlight">
+        <h3>💳 Pagamento fácil</h3>
+        <p>Pague via QR Code e confirme o pagamento de forma simples.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="planos">
+    <h2 class="section-title">Escolha o melhor plano</h2>
+    <p class="section-sub">Selecione a opção ideal para você e fale no WhatsApp para ativação.</p>
+
+    <div class="cards">
+      <div class="card">
+        <h3>1 Mês</h3>
+        <div class="price">R$ 25,00 <span>/ mensal</span></div>
+        <p class="small">Uma opção simples para começar.</p>
+        <ul class="features">
+          <li>✔ Acesso prático</li>
+          <li>✔ Compatível com apps indicados</li>
+          <li>✔ Suporte via WhatsApp</li>
+        </ul>
+        <a class="btn btn-primary" href="https://wa.me/5511935028713" target="_blank">Quero este</a>
+      </div>
+
+      <div class="card popular">
+        <div class="tag">Mais procurado</div>
+        <h3>2 Meses</h3>
+        <div class="price">R$ 70,00 <span>/ bimestral</span></div>
+        <p class="small">Mais tempo para aproveitar com praticidade.</p>
+        <ul class="features">
+          <li>✔ Melhor permanência</li>
+          <li>✔ Instalação simples</li>
+          <li>✔ Atendimento rápido</li>
+        </ul>
+        <a class="btn btn-primary" href="https://wa.me/5511935028713" target="_blank">Quero este</a>
+      </div>
+
+      <div class="card">
+        <h3>6 Meses</h3>
+        <div class="price">R$ 110,00 <span>/ semestral</span></div>
+        <p class="small">Boa escolha para quem quer economizar mais.</p>
+        <ul class="features">
+          <li>✔ Custo-benefício</li>
+          <li>✔ Acesso em múltiplos dispositivos</li>
+          <li>✔ Suporte no WhatsApp</li>
+        </ul>
+        <a class="btn btn-primary" href="https://wa.me/5511935028713" target="_blank">Quero este</a>
+      </div>
+
+      <div class="card">
+        <div class="tag">Melhor valor</div>
+        <h3>Anual</h3>
+        <div class="price">R$ 280,00 <span>/ anual</span></div>
+        <p class="small">A melhor opção para quem quer mais tempo.</p>
+        <ul class="features">
+          <li>✔ Maior praticidade</li>
+          <li>✔ Mais tempo de acesso</li>
+          <li>✔ Suporte dedicado</li>
+        </ul>
+        <a class="btn btn-primary" href="https://wa.me/5511935028713" target="_blank">Quero este</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="apps">
+    <h2 class="section-title">Aplicativos recomendados</h2>
+    <p class="section-sub">Escolha o app ideal para seu aparelho e faça a instalação com facilidade.</p>
+
+    <div class="apps-grid">
+      <div class="app-card">
+        <h3>Android / TV Box</h3>
+        <p>Use o app recomendado para Android e TV Box.</p>
+        <br>
+        <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.xtream.xtream_tvapp&pcampaignid=web_share" target="_blank">Baixar app</a>
+      </div>
+
+      <div class="app-card">
+        <h3>Smart TV Samsung</h3>
+        <p>Instale a opção indicada para Smart TV Samsung.</p>
+        <br>
+        <a class="btn btn-primary" href="https://bob-player.softonic.com.br/android?utm_source=SEM&utm_medium=paid&utm_campaign=EN_PT_Brazil_DSA&gad_source=1&gad_campaignid=12178366686&gbraid=0AAAAAC5PVT7wa2uqmVCAyxk34fcIMvWlz&gclid=Cj0KCQjwp7jOBhDGARIsABe7C4dPQMWuF7Wz6tRswpRfj_48Y3oOkthmdJEHe43rodJxmV06vYBoSGMaAlP_EALw_wcB" target="_blank">Baixar app</a>
+      </div>
+
+      <div class="app-card">
+        <h3>Roku TV</h3>
+        <p>Baixe o app indicado para Roku e faça a configuração.</p>
+        <br>
+        <a class="btn btn-primary" href="https://xcloudiptv.com.br/download" target="_blank">Baixar app</a>
+      </div>
+
+      <div class="app-card">
+        <h3>Ajuda para instalar</h3>
+        <p>Se tiver dificuldade, fale com o suporte para receber ajuda na instalação.</p>
+        <br>
+        <a class="btn btn-secondary" href="https://wa.me/5511935028713" target="_blank">Pedir ajuda</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="como-funciona">
+    <h2 class="section-title">Como funciona</h2>
+    <p class="section-sub">Em poucos passos você já consegue começar.</p>
+
+    <div class="steps-grid">
+      <div class="step-card">
+        <h3>1. Escolha um plano</h3>
+        <p>Selecione o plano ideal conforme o tempo de acesso que você deseja.</p>
+      </div>
+      <div class="step-card">
+        <h3>2. Faça o pagamento</h3>
+        <p>Use o QR Code para pagar e envie o comprovante pelo WhatsApp.</p>
+      </div>
+      <div class="step-card">
+        <h3>3. Instale o app</h3>
+        <p>Baixe o aplicativo compatível com o seu aparelho.</p>
+      </div>
+      <div class="step-card">
+        <h3>4. Receba suporte</h3>
+        <p>Se precisar, o suporte ajuda com orientações para começar.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="showcase">
+      <h2 class="section-title">Compatível com seus dispositivos</h2>
+      <p class="section-sub">Use em diferentes aparelhos com uma experiência prática.</p>
+      <div class="device-grid">
+        <div class="device-card"><h3>📱 Celular Android</h3><p>Use no seu smartphone com app recomendado.</p></div>
+        <div class="device-card"><h3>📺 Smart TV Samsung</h3><p>Instale o player indicado e configure facilmente.</p></div>
+        <div class="device-card"><h3>📦 TV Box</h3><p>Ótima opção para assistir na TV com praticidade.</p></div>
+        <div class="device-card"><h3>🖥 Roku</h3><p>Compatível com a opção indicada para Roku.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="pagamento">
+    <h2 class="section-title">Pagamento rápido</h2>
+    <p class="section-sub">Escaneie o QR Code abaixo e envie o comprovante no WhatsApp.</p>
+
+    <div class="payment-wrap">
+      <div class="pix-box">
+        <img class="qr-image" src="qrcode.jpg" alt="QR Code de pagamento" />
+      </div>
+      <div class="pix-box">
+        <h3 style="font-size:1.6rem;margin-bottom:12px">Finalize sua assinatura</h3>
+        <p style="color:#b3b3b3;line-height:1.8">Após o pagamento, envie o comprovante para ativação e orientações de acesso.</p>
+        <div class="pix-copy">QR Code para pagamento</div>
+        <br>
+        <a class="btn btn-primary" href="https://wa.me/5511935028713" target="_blank">Enviar comprovante</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">O que estão dizendo</h2>
+    <p class="section-sub">Exemplo de área para reforçar confiança na sua página.</p>
+
+    <div class="reviews-grid">
+      <div class="review-card"><p>“Atendimento rápido e instalação fácil.”</p><br><strong>Cliente</strong></div>
+      <div class="review-card"><p>“Gostei da praticidade para usar nos aparelhos.”</p><br><strong>Cliente</strong></div>
+      <div class="review-card"><p>“Consegui configurar com ajuda do suporte.”</p><br><strong>Cliente</strong></div>
+    </div>
+  </section>
+
+  <section class="section" id="suporte">
+    <div class="support-box">
+      <h2>Suporte no WhatsApp</h2>
+      <p>Fale agora para tirar dúvidas, receber ajuda com instalação e confirmar pagamento.</p>
+      <a class="btn btn-primary" href="https://wa.me/5511935028713" target="_blank">Falar no WhatsApp</a>
+      <p style="margin-top:18px;color:#fff;font-weight:700">(11) 93502-8713</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">Perguntas frequentes</h2>
+    <div class="faq-item">
+      <h3>Como recebo meu acesso?</h3>
+      <p>Após o pagamento, envie o comprovante no WhatsApp para receber as orientações.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Em quais aparelhos funciona?</h3>
+      <p>Celular Android, TV Box, Smart TV Samsung e Roku.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Precisa instalar aplicativo?</h3>
+      <p>Sim. Você pode usar os aplicativos recomendados nesta página.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Se eu tiver dúvida, tem suporte?</h3>
+      <p>Sim. O atendimento é feito pelo WhatsApp.</p>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 TV Sem Limites • Plataforma de entretenimento
+  </footer>
+
+  <a class="whatsapp-fixed" href="https://wa.me/5511935028713" target="_blank">WhatsApp</a>
+</body>
+</html>
